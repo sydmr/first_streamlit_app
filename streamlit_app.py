@@ -59,7 +59,7 @@ my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
 # streamlit.text("Hello from Snowflake:")
 streamlit.header("The fruit load list contains:")
 # streamlit.text(my_data_row)my_data_row = my_cur.fetchone()
-my_data_row = my_cur.fetch()
+my_data_row = my_cur.fetchone()
 streamlit.dataframe(my_data_row)
 
 add_my_fruit = streamlit.text_input('What fruit would you like to add?','jackfruit')
