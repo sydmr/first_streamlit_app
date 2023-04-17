@@ -39,23 +39,23 @@ fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 streamlit.dataframe(fruityvice_normalized)
 
 # secrets file in the app
-#[snowflake]
-#user = "asydmr"
-#password = "xyz"
-#account = "TR12345.eu-west-1" 
-#warehouse = "pc_rivery_wh" 
-#database = "pc_rivery_db" 
-#schema = "public"
-#role = "pc_rivery_role"
+# [snowflake]
+# user = "asydmr"
+# password = "xyz"
+# account = "TR12345.eu-west-1" 
+# warehouse = "pc_rivery_wh" 
+# database = "pc_rivery_db" 
+# schema = "public"
+# role = "pc_rivery_role"
 
 
 import snowflake.connector
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
-#my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
-my_cur.execute("use warehouse compute_wh") 
+# my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+# my_cur.execute("use warehouse compute_wh") 
 my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
 my_data_row = my_cur.fetchone()
-#streamlit.text("Hello from Snowflake:")
+# streamlit.text("Hello from Snowflake:")
 streamlit.text("The fruit load list contains:")
 streamlit.text(my_data_row)
